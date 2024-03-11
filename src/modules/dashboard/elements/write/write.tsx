@@ -14,7 +14,7 @@ const Write = () => {
       if(emailTitle.length===0){
         toast.error("Enter the email subject to continue")
       }else{
-        const formattedTitle = emailTitle.replace(/\s+/g,"").replace(/&/g,"-");
+        const formattedTitle = emailTitle.replace(/\s+/g, "-").replace(/&/g, "-");
         console.log(formattedTitle);
         router.push(`/dashboard/new-email?subject=${formattedTitle}`)
       }
