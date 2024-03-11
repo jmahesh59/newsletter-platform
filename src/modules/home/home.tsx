@@ -1,8 +1,11 @@
 import Header from '@/shared/widgets/header/header'
 import React from 'react';
-import Banner from'./features/banner'
-import Branding from '@/modules/home/features/branding'
-import Benefits from './features/benefits'
+import Banner from './elements/banner';
+import Branding from './elements/branding';
+import Benefits from './elements/benefits';
+import FeatureHighlight from './elements/featureHighlight';
+import Footer from '@/shared/widgets/footer/footer';
+import Pricing from './elements/pricing';
 function Home() {
   return (
     <div>
@@ -10,6 +13,9 @@ function Home() {
       <Banner/>
       <Branding/>
       <Benefits/>
+      <FeatureHighlight/>
+      <Pricing/>
+      <Footer/>
     </div>
   )
 }
