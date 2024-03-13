@@ -6,6 +6,8 @@ import { DefaultJsonData } from "@/assets/mails/default";
 import { useClerk } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { Button } from "@nextui-org/react";
+import { saveEmail } from "@/actions/saveEmail";
+import toast from "react-hot-toast";
 
 function Emaileditor({subjectTitle}:{subjectTitle:string}) {
     const [loading , setLoading] = useState(false)
@@ -28,9 +30,21 @@ function Emaileditor({subjectTitle}:{subjectTitle:string}) {
         unlayer.loadDesign(jsonData);
       };
 
-      const saveDraft=()=>{
-
-      }
+      const saveDraft = async () => {
+        const unlayer = emailEditorRef.current?.editor;
+    
+        unlayer?.exportHtml(async (data) => {
+          const { design } = data;
+          await saveEmail({
+            title: subjectTitle,
+            content: JSON.stringify(design),
+            newsLetterOwnerId: user?.id!,
+          }).then((res: any) => {
+            toast.success(res?.message);
+            history.push("/dashboard/write");
+          });
+        });
+      };
 
       
 
